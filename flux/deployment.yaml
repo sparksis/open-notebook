@@ -18,3 +18,10 @@ spec:
         ports:
         - containerPort: 8502
         - containerPort: 5055
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
