@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-notebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-notebook
+  template:
+    metadata:
+      labels:
+        app: open-notebook
+    spec:
+      containers:
+      - name: open-notebook
+        image: ghcr.io/sparksis/open-notebook:0.1.0
+        ports:
+        - containerPort: 8502
+        - containerPort: 5055

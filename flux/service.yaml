@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-notebook
+spec:
+  selector:
+    app: open-notebook
+  ports:
+    - name: streamlit
+      protocol: TCP
+      port: 8502
+      targetPort: 8502
+    - name: api
+      protocol: TCP
+      port: 5055
+      targetPort: 5055
