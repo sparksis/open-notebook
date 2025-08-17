@@ -49,15 +49,37 @@ stringData:
 
 ## Volumes and Persistent Storage
 
-The deployments use `hostPath` volumes to persist data.
-**This is not recommended for production environments.**
-You should update the deployment files to use `PersistentVolumeClaim` for production.
+The deployments use `PersistentVolumeClaim` to persist data.
+You need to create the `PersistentVolumeClaim` resources before deploying the application.
 
 The following volumes are defined:
 
 -   `open-notebook.deployment.yaml`:
-    -   `notebook-data`: Stores the application data. Mapped to `/app/data` in the container.
+    -   `notebook-data`: Stores the application data. Mapped to `/app/data` in the container. This volume uses a `PersistentVolumeClaim` named `open-notebook-data-pvc`.
 -   `surrealdb.deployment.yaml`:
-    -   `surreal-data`: Stores the SurrealDB data. Mapped to `/mydata` in the container.
+    -   `surreal-data`: Stores the SurrealDB data. Mapped to `/mydata` in the container. This volume uses a `PersistentVolumeClaim` named `surrealdb-data-pvc`.
 
-You need to update the `hostPath` in the deployment files to point to the actual paths on your host machine.
+Here is an example of how to create the `PersistentVolumeClaim` resources:
+```yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: open-notebook-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: surrealdb-data-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+```

@@ -31,14 +31,7 @@ spec:
         volumeMounts:
         - name: notebook-data
           mountPath: /app/data
-        - name: surreal-data
-          mountPath: /mydata
       volumes:
       - name: notebook-data
-        hostPath:
-          # IMPORTANT: Update this path to the actual path on your host machine
-          path: /path/to/notebook_data
-      - name: surreal-data
-        hostPath:
-          # IMPORTANT: Update this path to the actual path on your host machine
-          path: /path/to/surreal_data
+        persistentVolumeClaim:
+          claimName: open-notebook-data-pvc

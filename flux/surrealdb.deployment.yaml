@@ -41,6 +41,5 @@ spec:
             cpu: "500m"
       volumes:
       - name: surreal-data
-        hostPath:
-          # IMPORTANT: Update this path to the actual path on your host machine
-          path: /path/to/surreal_data
+        persistentVolumeClaim:
+          claimName: surrealdb-data-pvc
