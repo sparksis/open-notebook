@@ -44,3 +44,16 @@ stringData:
 
   # ... and so on for all the other environment variables
 ```
+
+## Volumes and Persistent Storage
+
+The deployment uses `hostPath` volumes to persist data.
+**This is not recommended for production environments.**
+You should update the `deployment.yaml` to use `PersistentVolumeClaim` for production.
+
+The following volumes are defined:
+
+-   `notebook-data`: Stores the application data. Mapped to `/app/data` in the container.
+-   `surreal-data`: Stores the SurrealDB data. Mapped to `/mydata` in the container.
+
+You need to update the `hostPath` in the `deployment.yaml` to point to the actual paths on your host machine.
