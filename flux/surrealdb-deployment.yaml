@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: surrealdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: surrealdb
+  template:
+    metadata:
+      labels:
+        app: surrealdb
+    spec:
+      containers:
+      - name: surrealdb
+        image: surrealdb/surrealdb:v2
+        args:
+        - start
+        - --log
+        - info
+        - --user
+        - root
+        - --pass
+        - root
+        - rocksdb:/mydata/mydatabase.db
+        env:
+        - name: SURREAL_EXPERIMENTAL_GRAPHQL
+          value: "true"
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: surreal-data
+          mountPath: /mydata
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+      volumes:
+      - name: surreal-data
+        hostPath:
+          # IMPORTANT: Update this path to the actual path on your host machine
+          path: /path/to/surreal_data
