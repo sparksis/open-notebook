@@ -21,7 +21,7 @@ on:
     types: [published]
 
 env:
-  REGISTRY: docker.io
+  REGISTRY: ghcr.io
   IMAGE_NAME: ghcr.io/sparksis/open-notebook
 
 jobs:
