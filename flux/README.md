@@ -19,3 +19,28 @@ The following resources are included:
 
 To use these manifests, create a `Kustomization` resource in your Flux setup that points to this directory.
 You can override the default values by using patches in your `Kustomization` resource.
+
+## Configuration
+
+The deployment uses `envFrom` to load environment variables from a secret named `open-notebook-secret`.
+You need to create this secret in the same namespace as the deployment.
+
+Here is an example of how to create the secret:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: open-notebook-secret
+type: Opaque
+stringData:
+  # SECURITY
+  OPEN_NOTEBOOK_PASSWORD: "your-secure-password"
+
+  # OPENAI
+  OPENAI_API_KEY: "your-openai-api-key"
+
+  # ANTHROPIC
+  ANTHROPIC_API_KEY: "your-anthropic-api-key"
+
+  # ... and so on for all the other environment variables
+```
