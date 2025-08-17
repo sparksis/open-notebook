@@ -1,3 +1,11 @@
+# Open Notebook (sparksis/colton Fork)
+
+**This is a fork of the [lfnovo/open-notebook](https://github.com/lfnovo/open-notebook) repository, serving as the canonical source for @sparks-is and @colton's usage.**
+
+The Docker images for this fork are available on GitHub Container Registry: `ghcr.io/sparksis/open-notebook`.
+
+---
+
 <a id="readme-top"></a>
 
 <!-- [![Contributors][contributors-shield]][contributors-url] -->
