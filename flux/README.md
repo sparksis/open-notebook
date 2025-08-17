@@ -12,10 +12,10 @@ This allows for easy integration with existing Flux setups and enables the use o
 The following resources are included:
 
 -   `kustomization.yaml`: Defines the Kustomization for the flux resources.
--   `open-notebook-deployment.yaml`: Defines the `Deployment` resource for the `open-notebook` application.
--   `open-notebook-service.yaml`: Defines the `Service` resource to expose the `open-notebook` application.
--   `surrealdb-deployment.yaml`: Defines the `Deployment` resource for the `surrealdb` database.
--   `surrealdb-service.yaml`: Defines the `Service` resource for the `surrealdb` database.
+-   `open-notebook.deployment.yaml`: Defines the `Deployment` resource for the `open-notebook` application.
+-   `open-notebook.service.yaml`: Defines the `Service` resource to expose the `open-notebook` application.
+-   `surrealdb.deployment.yaml`: Defines the `Deployment` resource for the `surrealdb` database.
+-   `surrealdb.service.yaml`: Defines the `Service` resource for the `surrealdb` database.
 
 ## Usage
 
@@ -55,9 +55,9 @@ You should update the deployment files to use `PersistentVolumeClaim` for produc
 
 The following volumes are defined:
 
--   `open-notebook-deployment.yaml`:
+-   `open-notebook.deployment.yaml`:
     -   `notebook-data`: Stores the application data. Mapped to `/app/data` in the container.
--   `surrealdb-deployment.yaml`:
+-   `surrealdb.deployment.yaml`:
     -   `surreal-data`: Stores the SurrealDB data. Mapped to `/mydata` in the container.
 
 You need to update the `hostPath` in the deployment files to point to the actual paths on your host machine.
