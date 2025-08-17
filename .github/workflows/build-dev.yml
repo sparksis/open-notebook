@@ -2,9 +2,9 @@ name: Development Build
 
 on:
   pull_request:
-    branches: [ main ]
+    branches: [ sparksis ]
   push:
-    branches: [ main ]
+    branches: [ sparksis ]
     paths-ignore:
       - '**.md'
       - 'docs/**'
