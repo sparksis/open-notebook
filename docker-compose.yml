@@ -10,7 +10,7 @@ services:
     user: root
     restart: always
   open_notebook:
-    image: lfnovo/open_notebook:latest
+    image: ghcr.io/sparksis/open-notebook:latest
     ports:
       - "8502:8502"
     env_file:

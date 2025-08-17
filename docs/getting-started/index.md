@@ -55,7 +55,7 @@ After completing this section, explore:
 ## Need Help?
 
 - 💬 **[Discord Community](https://discord.gg/37XJPXfz2w)** - Get help and share ideas
-- 🐛 **[GitHub Issues](https://github.com/lfnovo/open-notebook/issues)** - Report bugs and request features
+- 🐛 **[GitHub Issues](https://github.com/sparksis/open-notebook/issues)** - Report bugs and request features
 - 📖 **[Troubleshooting](../troubleshooting/index.md)** - Common issues and solutions
 
 ---

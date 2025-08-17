@@ -32,7 +32,7 @@ For Docker deployments, add the password to your environment:
 # docker-compose.yml
 services:
   open_notebook:
-    image: lfnovo/open_notebook:latest-single
+    image: ghcr.io/sparksis/open-notebook:latest-single
     ports:
       - "8502:8502"
     environment:
@@ -126,7 +126,7 @@ These endpoints work without authentication:
 # docker-compose.single.yml
 services:
   open_notebook_single:
-    image: lfnovo/open_notebook:latest-single
+    image: ghcr.io/sparksis/open-notebook:latest-single
     ports:
       - "8502:8502"
       - "5055:5055"
@@ -155,7 +155,7 @@ services:
     restart: always
 
   open_notebook:
-    image: lfnovo/open_notebook:latest
+    image: ghcr.io/sparksis/open-notebook:latest
     ports:
       - "8502:8502"
       - "5055:5055"
@@ -269,7 +269,7 @@ iptables -A INPUT -p tcp --dport 5055 -j DROP
 # Production docker-compose.yml with security
 services:
   open_notebook:
-    image: lfnovo/open_notebook:latest
+    image: ghcr.io/sparksis/open-notebook:latest
     ports:
       - "127.0.0.1:8502:8502"  # Bind to localhost only
       - "127.0.0.1:5055:5055"
@@ -465,7 +465,7 @@ If you discover security vulnerabilities:
 For security configuration help:
 
 - **[Discord Server](https://discord.gg/37XJPXfz2w)** - Real-time help
-- **[GitHub Issues](https://github.com/lfnovo/open-notebook/issues)** - Configuration problems
+- **[GitHub Issues](https://github.com/sparksis/open-notebook/issues)** - Configuration problems
 - **[Documentation](../index.md)** - Additional guides
 
 ### Best Practices

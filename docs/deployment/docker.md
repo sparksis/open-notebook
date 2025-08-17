@@ -69,7 +69,7 @@ OpenAI provides everything you need to get started:
    ```yaml
    services:
      open_notebook:
-       image: lfnovo/open_notebook:latest-single
+       image: ghcr.io/sparksis/open-notebook:latest-single
        ports:
          - "8502:8502"
        environment:
@@ -143,7 +143,7 @@ services:
     restart: always
 
   open_notebook:
-    image: lfnovo/open_notebook:latest
+    image: ghcr.io/sparksis/open-notebook:latest
     ports:
       - "8502:8502"
       - "5055:5055"
@@ -287,7 +287,7 @@ services:
           cpus: "0.5"
 
   open_notebook:
-    image: lfnovo/open_notebook:latest
+    image: ghcr.io/sparksis/open-notebook:latest
     ports:
       - "127.0.0.1:8502:8502"
       - "127.0.0.1:5055:5055"
@@ -413,7 +413,7 @@ docker compose -p 8503:8502 up -d
 2. **Verify environment**: `docker compose config`
 3. **Test connectivity**: `docker compose exec open_notebook ping surrealdb`
 4. **Join Discord**: [discord.gg/37XJPXfz2w](https://discord.gg/37XJPXfz2w)
-5. **GitHub Issues**: [github.com/lfnovo/open-notebook/issues](https://github.com/lfnovo/open-notebook/issues)
+5. **GitHub Issues**: [github.com/sparksis/open-notebook/issues](https://github.com/sparksis/open-notebook/issues)
 
 ## 🎯 Next Steps
 
@@ -478,7 +478,7 @@ services:
       retries: 3
 
   open_notebook:
-    image: lfnovo/open_notebook:latest
+    image: ghcr.io/sparksis/open-notebook:latest
     ports:
       - "8502:8502"
       - "5055:5055"

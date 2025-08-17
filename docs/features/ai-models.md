@@ -534,7 +534,7 @@ docker run -d \
   -e OPENAI_API_KEY=your_key \
   -e GEMINI_API_KEY=your_key \
   -e ANTHROPIC_API_KEY=your_key \
-  lfnovo/open_notebook:latest-single
+  ghcr.io/sparksis/open-notebook:latest-single
 ```
 
 ### 3. Model Configuration
@@ -835,7 +835,7 @@ echo $OPENAI_API_KEY
 
 **Community Support**
 - [Discord Server](https://discord.gg/37XJPXfz2w) - Get help from the community
-- [GitHub Issues](https://github.com/lfnovo/open-notebook/issues) - Report bugs and request features
+- [GitHub Issues](https://github.com/sparksis/open-notebook/issues) - Report bugs and request features
 
 **Documentation**
 - [User Guide](../user-guide/index.md) - Learn how to use Open Notebook

@@ -28,7 +28,7 @@ This is the easiest way to get started with persistent data.
    ```yaml
    services:
      open_notebook_single:
-       image: lfnovo/open_notebook:latest-single
+       image: ghcr.io/sparksis/open-notebook:latest-single
        ports:
          - "8502:8502"  # Streamlit UI
          - "5055:5055"  # REST API
@@ -73,7 +73,7 @@ docker run -d \
   -e OPENAI_API_KEY=your_openai_key \
   -e ANTHROPIC_API_KEY=your_anthropic_key \
   -e OPEN_NOTEBOOK_PASSWORD=your_secure_password \
-  lfnovo/open_notebook:latest-single
+  ghcr.io/sparksis/open-notebook:latest-single
 ```
 
 ## 🌐 Platform-Specific Deployments
@@ -84,7 +84,7 @@ Perfect for PikaPods one-click deployment:
 
 1. **Use this configuration**:
    ```
-   Image: lfnovo/open_notebook:latest-single
+   Image: ghcr.io/sparksis/open-notebook:latest-single
    Port: 8502
    ```
 
@@ -113,7 +113,7 @@ For Railway deployment:
 ### DigitalOcean App Platform
 
 1. **Create a new app** from Docker Hub
-2. **Use image**: `lfnovo/open_notebook:latest-single`
+2. **Use image**: `ghcr.io/sparksis/open-notebook:latest-single`
 3. **Set environment variables** in the app settings
 4. **Configure persistent storage** for `/app/data` and `/mydata`
 
@@ -187,7 +187,7 @@ To build the single-container image yourself:
 
 ```bash
 # Clone the repository
-git clone https://github.com/lfnovo/open-notebook
+git clone https://github.com/sparksis/open-notebook
 cd open-notebook
 
 # Build the single-container image
@@ -335,7 +335,7 @@ docker stats open-notebook-single
 ### Community Support
 
 - **[Discord Server](https://discord.gg/37XJPXfz2w)** - Real-time help and discussion
-- **[GitHub Issues](https://github.com/lfnovo/open-notebook/issues)** - Bug reports and feature requests
+- **[GitHub Issues](https://github.com/sparksis/open-notebook/issues)** - Bug reports and feature requests
 - **[Documentation](../index.md)** - Complete documentation
 
 ### Common Solutions

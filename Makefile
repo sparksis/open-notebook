@@ -2,7 +2,7 @@
 
 # Get version from pyproject.toml
 VERSION := $(shell grep -m1 version pyproject.toml | cut -d'"' -f2)
-IMAGE_NAME := lfnovo/open_notebook
+IMAGE_NAME := ghcr.io/sparksis/open-notebook
 
 PLATFORMS=linux/amd64,linux/arm64
 

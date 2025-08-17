@@ -136,8 +136,8 @@ OLLAMA_API_BASE=http://localhost:11434
 
 ### Community Support
 - **[Discord Server](https://discord.gg/37XJPXfz2w)** - Real-time help and discussion
-- **[GitHub Issues](https://github.com/lfnovo/open-notebook/issues)** - Bug reports and feature requests
-- **[GitHub Discussions](https://github.com/lfnovo/open-notebook/discussions)** - Questions and ideas
+- **[GitHub Issues](https://github.com/sparksis/open-notebook/issues)** - Bug reports and feature requests
+- **[GitHub Discussions](https://github.com/sparksis/open-notebook/discussions)** - Questions and ideas
 
 ### Documentation
 - **[User Guide](../user-guide/index.md)** - Complete feature documentation

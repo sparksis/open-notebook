@@ -28,8 +28,8 @@ For users who want to get started immediately:
 mkdir open-notebook && cd open-notebook
 
 # Download configuration files
-curl -O https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
-curl -O https://raw.githubusercontent.com/lfnovo/open-notebook/main/.env.example
+curl -O https://raw.githubusercontent.com/sparksis/open-notebook/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/sparksis/open-notebook/main/.env.example
 
 # Rename and configure environment
 mv .env.example docker.env
@@ -42,7 +42,7 @@ docker compose up -d
 ### From Source (Developers)
 ```bash
 # Clone and setup
-git clone https://github.com/lfnovo/open-notebook
+git clone https://github.com/sparksis/open-notebook
 cd open-notebook
 cp .env.example .env
 # Edit .env with your API keys
@@ -278,7 +278,7 @@ sudo usermod -aG docker $USER
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/lfnovo/open-notebook.git
+git clone https://github.com/sparksis/open-notebook.git
 cd open-notebook
 ```
 
@@ -357,7 +357,7 @@ cd open-notebook
 cat > docker-compose.yml << 'EOF'
 services:
   open_notebook:
-    image: lfnovo/open_notebook:latest-single
+    image: ghcr.io/sparksis/open-notebook:latest-single
     ports:
       - "8502:8502"
       - "5055:5055"
@@ -403,10 +403,10 @@ For scalable production deployments:
 1. **Download Configuration**
 ```bash
 # Download the main docker-compose.yml
-curl -O https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
+curl -O https://raw.githubusercontent.com/sparksis/open-notebook/main/docker-compose.yml
 
 # Copy environment template
-curl -o docker.env https://raw.githubusercontent.com/lfnovo/open-notebook/main/.env.example
+curl -o docker.env https://raw.githubusercontent.com/sparksis/open-notebook/main/.env.example
 ```
 
 2. **Configure Environment**
@@ -800,7 +800,7 @@ sudo chown -R $USER:$USER ./surreal_data
 
 #### Community Support
 - **Discord**: https://discord.gg/37XJPXfz2w
-- **GitHub Issues**: https://github.com/lfnovo/open-notebook/issues
+- **GitHub Issues**: https://github.com/sparksis/open-notebook/issues
 - **Installation Assistant**: https://chatgpt.com/g/g-68776e2765b48191bd1bae3f30212631-open-notebook-installation-assistant
 
 #### Bug Reports

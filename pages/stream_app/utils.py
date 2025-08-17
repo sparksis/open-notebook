@@ -32,12 +32,12 @@ def version_sidebar():
                 current_version = pyproject["project"]["version"]
 
         latest_version = get_version_from_github(
-            "https://www.github.com/lfnovo/open-notebook", "main"
+            "https://www.github.com/sparksis/open-notebook", "main"
         )
         st.write(f"Open Notebook: {current_version}")
         if compare_versions(current_version, latest_version) < 0:
             st.warning(
-                f"New version {latest_version} available. [Click here for upgrade instructions](https://github.com/lfnovo/open-notebook/blob/main/docs/SETUP.md#upgrading-open-notebook)"
+                f"New version {latest_version} available. [Click here for upgrade instructions](https://github.com/sparksis/open-notebook/blob/main/docs/SETUP.md#upgrading-open-notebook)"
             )
 
 

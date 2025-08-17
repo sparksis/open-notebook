@@ -135,7 +135,7 @@ def add_source(notebook_id):
                 st.error(e)
                 st.link_button(
                     "Go to Github Issues",
-                    url="https://www.github.com/lfnovo/open-notebook/issues",
+                    url="https://www.github.com/sparksis/open-notebook/issues",
                 )
                 st.stop()
 
