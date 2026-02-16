@@ -1,0 +1,11 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: open-notebook
+  description: "\"Open Notebook\" is a privacy-focused, open-source alternative to Google's Notebook LM, allowing users to control their data, choose from over 16 AI models, organize multi-modal content, generate multi-speaker podcasts, perform intelligent searches, and engage in context-aware AI chats."
+  annotations:
+    github.com/project-slug: sparksis/open-notebook
+spec:
+  type: service
+  lifecycle: experimental
+  owner: sparksis
