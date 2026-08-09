@@ -1,0 +1,224 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: surreal-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: surrealdb
+  labels:
+    app: surrealdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: surrealdb
+  template:
+    metadata:
+      labels:
+        app: surrealdb
+    spec:
+      containers:
+        - name: surrealdb
+          image: surrealdb/surrealdb:v2
+          command:
+            - /surreal
+            - start
+            - --log
+            - info
+            - --user
+            - root
+            - --pass
+            - root
+            - rocksdb:/mydata/mydatabase.db
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          env:
+            - name: SURREAL_EXPERIMENTAL_GRAPHQL
+              value: "true"
+          volumeMounts:
+            - name: surreal-data
+              mountPath: /mydata
+      volumes:
+        - name: surreal-data
+          persistentVolumeClaim:
+            claimName: surreal-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: surrealdb
+spec:
+  selector:
+    app: surrealdb
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ollama
+spec:
+  selector:
+    app: ollama
+  ports:
+    - protocol: TCP
+      port: 11434
+      targetPort: 11434
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: speaches-hf-cache
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: speaches
+  labels:
+    app: speaches
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: speaches
+  template:
+    metadata:
+      labels:
+        app: speaches
+    spec:
+      containers:
+        - name: speaches
+          image: ghcr.io/speaches-ai/speaches:latest-cpu
+          ports:
+            - containerPort: 8000
+          resources:
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+            limits:
+              memory: "4Gi"
+              cpu: "2000m"
+          volumeMounts:
+            - name: hf-hub-cache
+              mountPath: /home/ubuntu/.cache/huggingface/hub
+      volumes:
+        - name: hf-hub-cache
+          persistentVolumeClaim:
+            claimName: speaches-hf-cache
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: speaches
+spec:
+  selector:
+    app: speaches
+  ports:
+    - protocol: TCP
+      port: 8969
+      targetPort: 8000
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: notebook-data
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-notebook
+  labels:
+    app: open-notebook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: open-notebook
+  template:
+    metadata:
+      labels:
+        app: open-notebook
+    spec:
+      containers:
+        - name: open-notebook
+          image: lfnovo/open_notebook:v1-latest
+          ports:
+            - containerPort: 8502
+            - containerPort: 5055
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2Gi"
+              cpu: "1000m"
+          env:
+            - name: OPEN_NOTEBOOK_ENABLE_DOCLING
+              value: "true"
+            - name: OPEN_NOTEBOOK_ENCRYPTION_KEY
+              value: "change-me-to-a-secret-string"
+            - name: SURREAL_URL
+              value: "ws://surrealdb:8000/rpc"
+            - name: SURREAL_USER
+              value: "root"
+            - name: SURREAL_PASSWORD
+              value: "root"
+            - name: SURREAL_NAMESPACE
+              value: "open_notebook"
+            - name: SURREAL_DATABASE
+              value: "open_notebook"
+            - name: OLLAMA_API_BASE
+              value: "http://ollama:11434"
+          volumeMounts:
+            - name: notebook-data
+              mountPath: /app/data
+      volumes:
+        - name: notebook-data
+          persistentVolumeClaim:
+            claimName: notebook-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-notebook
+spec:
+  selector:
+    app: open-notebook
+  ports:
+    - name: web
+      protocol: TCP
+      port: 8502
+      targetPort: 8502
+    - name: app
+      protocol: TCP
+      port: 5055
+      targetPort: 5055

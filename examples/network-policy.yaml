@@ -1,0 +1,115 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: open-notebook-stack
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: open-notebook
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  # Allow access to Web UI and API from anywhere (via LoadBalancer)
+  - ports:
+    - protocol: TCP
+      port: 8502
+    - protocol: TCP
+      port: 5055
+  egress:
+  # Allow egress to SurrealDB
+  - to:
+    - podSelector:
+        matchLabels:
+          app: surrealdb
+    ports:
+    - protocol: TCP
+      port: 8000
+  # Allow egress to Speaches
+  - to:
+    - podSelector:
+        matchLabels:
+          app: speaches
+    ports:
+    - protocol: TCP
+      port: 8000
+  # Allow egress to Ollama
+  - to:
+    - podSelector:
+        matchLabels:
+          app: ollama
+    ports:
+    - protocol: TCP
+      port: 11434
+  # Allow DNS resolution
+  - to:
+    - namespaceSelector: {}
+    ports:
+    - protocol: UDP
+      port: 53
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: surrealdb-ingress
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: surrealdb
+  policyTypes:
+  - Ingress
+  ingress:
+  # Only allow Open Notebook to talk to SurrealDB
+  - from:
+    - podSelector:
+        matchLabels:
+          app: open-notebook
+    ports:
+    - protocol: TCP
+      port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: speaches-ingress
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: speaches
+  policyTypes:
+  - Ingress
+  ingress:
+  # Only allow Open Notebook to talk to Speaches
+  - from:
+    - podSelector:
+        matchLabels:
+          app: open-notebook
+    ports:
+    - protocol: TCP
+      port: 8000
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ollama-ingress
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      app: ollama
+  policyTypes:
+  - Ingress
+  ingress:
+  # Allow existing external traffic (LoadBalancer) and internal Open Notebook
+  - from:
+    - podSelector:
+        matchLabels:
+          app: open-notebook
+    ports:
+    - protocol: TCP
+      port: 11434
+  # Note: This is an additive policy. If your cluster has a default-deny, 
+  # you may need to explicitly allow the LoadBalancer IP range as well.
