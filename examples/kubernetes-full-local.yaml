@@ -17,6 +17,8 @@ metadata:
     app: surrealdb
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: surrealdb
@@ -37,7 +39,7 @@ spec:
             - root
             - --pass
             - root
-            - rocksdb:/mydata/mydatabase.db
+            - rocksdb:///home/nonroot/data/mydatabase.db
           ports:
             - containerPort: 8000
           resources:
@@ -52,7 +54,7 @@ spec:
               value: "true"
           volumeMounts:
             - name: surreal-data
-              mountPath: /mydata
+              mountPath: /home/nonroot/data
       volumes:
         - name: surreal-data
           persistentVolumeClaim:
